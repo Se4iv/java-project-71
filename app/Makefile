@@ -1,3 +1,3 @@
 #Makefile
 run:
-	@./build/install/app/bin/app
+	@./build/install/app/bin/app -h
