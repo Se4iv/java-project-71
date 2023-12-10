@@ -1,10 +1,12 @@
 #Makefile
 help:
 	@./build/install/app/bin/app -h 
-run:
+run-json:
 	@./build/install/app/bin/app file1.json file2.json
+run-yml:
+	@./build/install/app/bin/app file1.yml file2.yml
 build:
-	@gradle clean build
+	@gradle clean build installDist
 test:
 	@gradle test
 lint:

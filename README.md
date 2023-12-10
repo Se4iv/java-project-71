@@ -8,4 +8,8 @@
 [![asciicast](https://asciinema.org/a/B4Z1LZZeDE95dWOJ6fBfx0Db9.svg)](https://asciinema.org/a/B4Z1LZZeDE95dWOJ6fBfx0Db9)
 
 #Java CI
+
 [![Actions Status](https://github.com/Se4iv/java-project-71/actions/workflows/main.yml/badge.svg)](https://github.com/Se4iv/java-project-71/actions)
+
+#Asciinema example yml diff
+[![asciicast](https://asciinema.org/a/Dh1xMz5eebXznpuGnNd79z9nd.svg)](https://asciinema.org/a/Dh1xMz5eebXznpuGnNd79z9nd)

@@ -9,7 +9,7 @@ public class ApplicationTest {
     private final String userdir = System.getProperty("user.dir");
 
     @Test
-    public void testDiff() throws IOException {
+    public void testJsonDiff() throws IOException {
         Path path1 = Paths.get(userdir, "/src/test/resources/testDiff_file1.json");
         Path path2 = Paths.get(userdir, "/src/test/resources/testDiff_file2.json");
 
@@ -21,7 +21,7 @@ public class ApplicationTest {
     }
 
     @Test
-    public void testNull() throws IOException {
+    public void testJsonNull() throws IOException {
         Path path1 = Paths.get(userdir, "/src/test/resources/testNull_file1.json");
         Path path2 = Paths.get(userdir, "/src/test/resources/testNull_file2.json");
         String expected = "{\n"
@@ -31,9 +31,50 @@ public class ApplicationTest {
         assertThat(Differ.generate(path1, path2)).isEqualTo(expected);
     }
     @Test
-    public void testDiff2() throws IOException {
+    public void testJsonDiff2() throws IOException {
         Path path1 = Paths.get(userdir, "/src/test/resources/testDiff2_file1.json");
         Path path2 = Paths.get(userdir, "/src/test/resources/testDiff2_file2.json");
+        String expected = "{\n"
+                + "+ config: latest\n"
+                + "- enable: true\n"
+                + "+ enable: false\n"
+                + "  host: hexlet.io\n"
+                + "- ip: 192.1.1.1\n"
+                + "+ ip: 192.1.1.3\n"
+                + "- port: 1\n"
+                + "+ port: 10\n"
+                + "- wait: 4\n"
+                + "}";
+        assertThat(Differ.generate(path1, path2)).isEqualTo(expected);
+    }
+
+
+    @Test
+    public void testYamlDiff() throws IOException {
+        Path path1 = Paths.get(userdir, "/src/test/resources/testDiff_file1.yml");
+        Path path2 = Paths.get(userdir, "/src/test/resources/testDiff_file2.yml");
+
+        String expected = "{\n"
+                + "  host: hexlet.io\n"
+                + "  ip: 192.1.1.1\n"
+                + "}";
+        assertThat(Differ.generate(path1, path2)).isEqualTo(expected);
+    }
+
+    @Test
+    public void testYamlNull() throws IOException {
+        Path path1 = Paths.get(userdir, "/src/test/resources/testNull_file1.yml");
+        Path path2 = Paths.get(userdir, "/src/test/resources/testNull_file2.yml");
+        String expected = "{\n"
+                + "+ host: hexlet.io\n"
+                + "+ ip: 192.1.1.1\n"
+                + "}";
+        assertThat(Differ.generate(path1, path2)).isEqualTo(expected);
+    }
+    @Test
+    public void testYamlDiff2() throws IOException {
+        Path path1 = Paths.get(userdir, "/src/test/resources/testDiff2_file1.yml");
+        Path path2 = Paths.get(userdir, "/src/test/resources/testDiff2_file2.yml");
         String expected = "{\n"
                 + "+ config: latest\n"
                 + "- enable: true\n"
