@@ -1,18 +1,19 @@
 package hexlet.code;
 
-import java.util.List;
+import formatters.Plain;
+import formatters.Stylish;
+import java.util.Map;
 
 public class Formatter {
 
-    public static String formOutput(List<String> list, String style) {
-        StringBuilder stringBuilder = new StringBuilder();
-        if (style.equals("stylish")) {
-            stringBuilder.append("{\n");
-            for (String str : list) {
-                stringBuilder.append(str).append("\n");
-            }
-            stringBuilder.append("}");
+    public static String chooseStyle(Map<String, Object> map, String style) {
+
+        switch (style) {
+            case "plain":
+                return Plain.formOutput(map);
+            default:
+                return Stylish.formOutput(map);
         }
-        return stringBuilder.toString();
+
     }
 }

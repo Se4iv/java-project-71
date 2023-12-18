@@ -13,3 +13,9 @@
 
 #Asciinema example yml diff
 [![asciicast](https://asciinema.org/a/Dh1xMz5eebXznpuGnNd79z9nd.svg)](https://asciinema.org/a/Dh1xMz5eebXznpuGnNd79z9nd)
+
+#Asciinema example step 8
+[![asciicast](https://asciinema.org/a/UWXMMeY9jw2PvBUsqHuo5JqhH.svg)](https://asciinema.org/a/UWXMMeY9jw2PvBUsqHuo5JqhH)
+
+#Asciinema example step 9
+[![asciicast](https://asciinema.org/a/JEuvYpt4Y7kwzwPZSUesGTq6l.svg)](https://asciinema.org/a/JEuvYpt4Y7kwzwPZSUesGTq6l)
