@@ -19,3 +19,6 @@
 
 #Asciinema example step 9
 [![asciicast](https://asciinema.org/a/JEuvYpt4Y7kwzwPZSUesGTq6l.svg)](https://asciinema.org/a/JEuvYpt4Y7kwzwPZSUesGTq6l)
+
+#Asciinema example step 10
+[![asciicast](https://asciinema.org/a/lWiR7xUVuEO4kSHMeRQ8ArKC6.svg)](https://asciinema.org/a/lWiR7xUVuEO4kSHMeRQ8ArKC6)

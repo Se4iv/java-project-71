@@ -1,0 +1,9 @@
+{
+  "host": "hexlet.io",
+  "enable": false,
+  "port": 10,
+  "ip": ["192.1.1.3","192.0.0.1","168.168.1.1"],
+  "config": "latest",
+  "good": 13,
+  "object": {"key1" : "two", "key2": "one"}
+}

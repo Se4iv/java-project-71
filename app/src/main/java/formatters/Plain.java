@@ -11,21 +11,17 @@ public class Plain {
                 continue;
             } else {
                 result.append("Property '").append(element.getKey().toString()
-                                .replace("changedfrom$", "")
-                                .replace("remove$", "")
-                                .replace("add$", "")
-                                .replace("#first", "")
-                                .replace("#second", "")).append("'");
+                        .replace("changedfrom$", "").replace("remove$", "")
+                        .replace("add$", "").replace("#first", "")
+                        .replace("#second", "")).append("'");
             }
             if (element.getKey().toString().contains("changedfrom$")) {
-                result.append(" was updated. From ")
-                        .append(formatValue(element.getValue())).append(" to ")
+                result.append(" was updated. From ").append(formatValue(element.getValue())).append(" to ")
                         .append(formatValue(map.get(element.getKey().toString()
                                 .replace("changedfrom$", "changedto$")
                                 .replace("#first", "#second"))));
             } else if (element.getKey().toString().contains("add$")) {
-                result.append(" was added with value: ")
-                        .append(formatValue(element.getValue()));
+                result.append(" was added with value: ").append(formatValue(element.getValue()));
             } else {
                 result.append(" was removed");
             }

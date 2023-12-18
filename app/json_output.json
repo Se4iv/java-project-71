@@ -1,0 +1,26 @@
+{
+"old_chars2" : [ "d", "e", "f" ],
+"new_chars2" : false,
+"old_checked" : false,
+"new_checked" : true,
+"old_default" : null,
+"new_default" : [ "value1", "value2" ],
+"old_id" : 45,
+"new_id" : null,
+"deleted_key1" : "value1",
+"added_key2" : "value2",
+"old_numbers2" : [ 2, 3, 4, 5 ],
+"new_numbers2" : [ 22, 33, 44, 55 ],
+"deleted_numbers3" : [ 3, 4, 5 ],
+"added_numbers4" : [ 4, 5, 6 ],
+"added_obj1" : {
+  "nestedKey" : "value",
+  "isNested" : true
+},
+"old_setting1" : "Some value",
+"new_setting1" : "Another value",
+"old_setting2" : 200,
+"new_setting2" : 300,
+"old_setting3" : true,
+"new_setting3" : "none"
+}
