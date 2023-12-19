@@ -12,13 +12,14 @@ public class Stylish {
             if (element.getFilenumber() == 2 && element.getType().equals("unchanged")) {
                 continue;
             } else if (element.getType().equals("removed")) {
-                result.append(concatenateOutput(element, "- ", false));
+                result.append(concatenateOutput(element, "  - ", false));
             } else if (element.getType().equals("added")) {
-                result.append(concatenateOutput(element, "+ ", false));
+                result.append(concatenateOutput(element, "  + ", false));
             } else if (element.getType().equals("unchanged")) {
-                result.append(concatenateOutput(element, "  ", false));
+                result.append(concatenateOutput(element, "    ", false));
             } else {
-                result.append(concatenateOutput(element, "- ", false)).append(concatenateOutput(element, "+ ", true));
+                result.append(concatenateOutput(element, "  - ", false))
+                        .append(concatenateOutput(element, "  + ", true));
             }
         }
         return result.append("}").toString();
