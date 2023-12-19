@@ -1,26 +1,20 @@
 {
-  "old_chars2" : [ "d", "e", "f" ],
-  "new_chars2" : false,
-  "old_checked" : false,
-  "new_checked" : true,
-  "old_default" : null,
-  "new_default" : [ "value1", "value2" ],
-  "old_id" : 45,
-  "new_id" : null,
-  "deleted_key1" : "value1",
-  "added_key2" : "value2",
-  "old_numbers2" : [ 2, 3, 4, 5 ],
-  "new_numbers2" : [ 22, 33, 44, 55 ],
-  "deleted_numbers3" : [ 3, 4, 5 ],
-  "added_numbers4" : [ 4, 5, 6 ],
-  "added_obj1" : {
-    "nestedKey" : "value",
-    "isNested" : true
+  "added_config" : "latest",
+  "old_enable" : true,
+  "new_enable" : false,
+  "old_good" : null,
+  "new_good" : 13,
+  "old_ip" : [ "192.1.1.1", "192.0.0.1", "168.168.1.1" ],
+  "new_ip" : [ "192.1.1.3", "192.0.0.1", "168.168.1.1" ],
+  "old_object" : {
+    "key1" : "one",
+    "key2" : "two"
   },
-  "old_setting1" : "Some value",
-  "new_setting1" : "Another value",
-  "old_setting2" : 200,
-  "new_setting2" : 300,
-  "old_setting3" : true,
-  "new_setting3" : "none"
+  "new_object" : {
+    "key1" : "two",
+    "key2" : "one"
+  },
+  "old_port" : 1,
+  "new_port" : 10,
+  "deleted_wait" : 4
 }

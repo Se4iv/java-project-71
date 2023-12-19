@@ -28,13 +28,10 @@ dependencies {
     implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.15.3'
 // https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-yaml
     implementation group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-yaml', version: '2.16.0'
-
-    // https://mvnrepository.com/artifact/org.jacoco/org.jacoco.core
+// https://mvnrepository.com/artifact/org.jacoco/org.jacoco.core
     implementation group: 'org.jacoco', name: 'org.jacoco.core', version: '0.8.11'
 // https://mvnrepository.com/artifact/org.assertj/assertj-core
     testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.24.2'
-
-
 }
 
 tasks.test {
@@ -52,8 +49,19 @@ compileJava {
     options.release = 20
     options.compilerArgs += ["-Aproject=${project.group}/${project.name}"]
 }
-tasks.jacocoTestReport {
+
+jacoco {
+    applyTo run
+}
+jacocoTestReport {
     reports {
-        xml.required.set(true)
+        xml.required = false
+        csv.required = false
+        html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
     }
 }
+
+tasks.register('applicationCodeCoverageReport', JacocoReport) {
+        executionData run
+        sourceSets sourceSets.main
+    }

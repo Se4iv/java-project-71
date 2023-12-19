@@ -18,8 +18,7 @@ public class Stylish {
             } else if (element.getType().equals("unchanged")) {
                 result.append(concatenateOutput(element, "  ", false));
             } else {
-                result.append(concatenateOutput(element, "- ", false));
-                result.append(concatenateOutput(element, "+ ", true));
+                result.append(concatenateOutput(element, "- ", false)).append(concatenateOutput(element, "+ ", true));
             }
         }
         return result.append("}").toString();
