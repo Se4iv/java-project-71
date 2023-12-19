@@ -1,8 +1,6 @@
 import hexlet.code.Differ;
 import org.junit.jupiter.api.Test;
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class ApplicationTest {
@@ -13,8 +11,8 @@ public class ApplicationTest {
 
     @Test
     public void testJsonDiff() throws IOException {
-        Path path1 = Paths.get(USERDIR, "/src/test/resources/testDiff_file1.json");
-        Path path2 = Paths.get(USERDIR, "/src/test/resources/testDiff_file2.json");
+        String path1 = USERDIR + "/src/test/resources/testDiff_file1.json";
+        String path2 = USERDIR + "/src/test/resources/testDiff_file2.json";
         String expected = "{\n"
                 + "  host: hexlet.io\n"
                 + "  ip: [192.1.1.1, 192.0.0.1, 168.168.1.1]\n"
@@ -24,8 +22,8 @@ public class ApplicationTest {
 
     @Test
     public void testJsonNull() throws IOException {
-        Path path1 = Paths.get(USERDIR, "/src/test/resources/testNull_file1.json");
-        Path path2 = Paths.get(USERDIR, "/src/test/resources/testNull_file2.json");
+        String path1 = USERDIR + "/src/test/resources/testNull_file1.json";
+        String path2 = USERDIR + "/src/test/resources/testNull_file2.json";
         String expected = "{\n"
                 + "+ host: hexlet.io\n"
                 + "+ ip: [192.1.1.1, 192.0.0.1, 168.168.1.1]\n"
@@ -34,8 +32,8 @@ public class ApplicationTest {
     }
     @Test
     public void testJsonDiff2() throws IOException {
-        Path path1 = Paths.get(USERDIR, "/src/test/resources/testDiff2_file1.json");
-        Path path2 = Paths.get(USERDIR, "/src/test/resources/testDiff2_file2.json");
+        String path1 = USERDIR + "/src/test/resources/testDiff2_file1.json";
+        String path2 = USERDIR + "/src/test/resources/testDiff2_file2.json";
         String expected = "{\n"
                 + "+ config: latest\n"
                 + "- enable: true\n"
@@ -52,8 +50,8 @@ public class ApplicationTest {
 
     @Test
     public void testJsonDiff3() throws IOException {
-        Path path1 = Paths.get(USERDIR, "/src/test/resources/testDiff3_file1.json");
-        Path path2 = Paths.get(USERDIR, "/src/test/resources/testDiff3_file2.json");
+        String path1 = USERDIR + "/src/test/resources/testDiff3_file1.json";
+        String path2 = USERDIR + "/src/test/resources/testDiff3_file2.json";
         String expected =  "Property 'config' was added with value: 'latest'\n"
                 + "Property 'enable' was updated. From true to false\n"
                 + "Property 'good' was updated. From null to 13\n"
@@ -65,8 +63,8 @@ public class ApplicationTest {
 
     @Test
     public void testJsonDiff4() throws IOException {
-        Path path1 = Paths.get(USERDIR, "/src/test/resources/testDiff4_file1.json");
-        Path path2 = Paths.get(USERDIR, "/src/test/resources/testDiff4_file2.json");
+        String path1 = USERDIR + "/src/test/resources/testDiff4_file1.json";
+        String path2 = USERDIR + "/src/test/resources/testDiff4_file2.json";
         String expected =  "{\n"
                 + "  \"added_config\" : \"latest\",\n"
                 + "  \"old_enable\" : true,\n"
@@ -87,9 +85,8 @@ public class ApplicationTest {
 
     @Test
     public void testYamlDiff() throws IOException {
-        Path path1 = Paths.get(USERDIR, "/src/test/resources/testDiff_file1.yml");
-        Path path2 = Paths.get(USERDIR, "/src/test/resources/testDiff_file2.yml");
-
+        String path1 = USERDIR + "/src/test/resources/testDiff_file1.yml";
+        String path2 = USERDIR + "/src/test/resources/testDiff_file2.yml";
         String expected = "{\n"
                 + "  host: hexlet.io\n"
                 + "  ip: [192.1.1.1, 192.0.0.1, 168.168.1.1]\n"
@@ -99,8 +96,8 @@ public class ApplicationTest {
 
     @Test
     public void testYamlNull() throws IOException {
-        Path path1 = Paths.get(USERDIR, "/src/test/resources/testNull_file1.yml");
-        Path path2 = Paths.get(USERDIR, "/src/test/resources/testNull_file2.yml");
+        String path1 = USERDIR + "/src/test/resources/testNull_file1.yml";
+        String path2 = USERDIR + "/src/test/resources/testNull_file2.yml";
         String expected = "{\n"
                 + "+ host: hexlet.io\n"
                 + "+ ip: [192.1.1.1, 192.0.0.1, 168.168.1.1]\n"
@@ -109,8 +106,8 @@ public class ApplicationTest {
     }
     @Test
     public void testYamlDiff2() throws IOException {
-        Path path1 = Paths.get(USERDIR, "/src/test/resources/testDiff2_file1.yml");
-        Path path2 = Paths.get(USERDIR, "/src/test/resources/testDiff2_file2.yml");
+        String path1 = USERDIR + "/src/test/resources/testDiff2_file1.yml";
+        String path2 = USERDIR + "/src/test/resources/testDiff2_file2.yml";
         String expected = "{\n"
                 + "+ config: latest\n"
                 + "- enable: true\n"
@@ -127,8 +124,8 @@ public class ApplicationTest {
 
     @Test
     public void testYamlDiff3() throws IOException {
-        Path path1 = Paths.get(USERDIR, "/src/test/resources/testDiff3_file1.yml");
-        Path path2 = Paths.get(USERDIR, "/src/test/resources/testDiff3_file2.yml");
+        String path1 = USERDIR + "/src/test/resources/testDiff3_file1.yml";
+        String path2 = USERDIR + "/src/test/resources/testDiff3_file2.yml";
         String expected = "Property 'config' was added with value: 'latest'\n"
                 + "Property 'enable' was updated. From true to false\n"
                 + "Property 'good' was updated. From null to 13\n"
@@ -140,8 +137,8 @@ public class ApplicationTest {
 
     @Test
     public void testYamlDiff4() throws IOException {
-        Path path1 = Paths.get(USERDIR, "/src/test/resources/testDiff4_file1.yml");
-        Path path2 = Paths.get(USERDIR, "/src/test/resources/testDiff4_file2.yml");
+        String path1 = USERDIR + "/src/test/resources/testDiff4_file1.yml";
+        String path2 = USERDIR + "/src/test/resources/testDiff4_file2.yml";
         String expected = "{\n"
                 + "  \"added_config\" : \"latest\",\n"
                 + "  \"old_enable\" : true,\n"

@@ -10,16 +10,16 @@ import java.util.Map;
 
 public class Differ {
 
-    public static String generate(Path path1, Path path2, String formatstyle) throws IOException {
+    public static String generate(String... params) throws IOException {
         List<Node> list1 = new ArrayList<>();
         List<Node> list2 = new ArrayList<>();
         List<Node> resultlist = new ArrayList<>();
-        addMapToList(list1, Parser.parseFile(path1), 1);
-        addMapToList(list2, Parser.parseFile(path2), 2);
+        addMapToList(list1, Parser.parseFile(Path.of(params[0])), 1);
+        addMapToList(list2, Parser.parseFile(Path.of(params[1])), 2);
         compareNodeLeft(list1, list2, resultlist);
         compareNodeRight(list1, list2, resultlist);
         resultlist.sort(Comparator.comparing(x -> x.getKey() + x.getFilenumber()));
-        return Formatter.chooseStyle(resultlist, formatstyle);
+        return Formatter.chooseStyle(resultlist, params[2]);
     }
 
     public static void addMapToList(List<Node> list, Map<String, Object> map, int number) {
