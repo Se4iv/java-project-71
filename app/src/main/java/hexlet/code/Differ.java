@@ -9,9 +9,9 @@ import java.util.Map;
 
 
 public class Differ {
+    private static final int STYLECOUNT = 3;
 
     public static String generate(String... params) throws IOException {
-        int num = 3;
         List<Node> list1 = new ArrayList<>();
         List<Node> list2 = new ArrayList<>();
         List<Node> resultlist = new ArrayList<>();
@@ -20,7 +20,7 @@ public class Differ {
         compareNodeLeft(list1, list2, resultlist);
         compareNodeRight(list1, list2, resultlist);
         resultlist.sort(Comparator.comparing(x -> x.getKey() + x.getFilenumber()));
-        return Formatter.chooseStyle(resultlist, params.length == num ? params[2] : "stylish");
+        return Formatter.chooseStyle(resultlist, params.length == STYLECOUNT ? params[2] : "stylish");
     }
 
     public static void addMapToList(List<Node> list, Map<String, Object> map, int number) {
