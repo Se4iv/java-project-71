@@ -2,43 +2,53 @@ package hexlet.code;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 
 
 public class Differ {
 
     public static String generate(Path path1, Path path2, String formatstyle) throws IOException {
-        Map<String, Object> map1  = Parser.parseFile(path1);
-        Map<String, Object> map2  = Parser.parseFile(path2);
-        Map<String, Object> resultmap =
-                new TreeMap<>(Comparator.comparing(x -> x.substring(x.indexOf("$") + 1)));
-        resultmap(map1, map2, resultmap, "right");
-        resultmap(map1, map2, resultmap, "left");
-        return Formatter.chooseStyle(resultmap, formatstyle);
+        List<Node> list1 = new ArrayList<>();
+        List<Node> list2 = new ArrayList<>();
+        List<Node> resultlist = new ArrayList<>();
+        addMapToList(list1, Parser.parseFile(path1), 1);
+        addMapToList(list2, Parser.parseFile(path2), 2);
+        compareNodeLeft(list1, list2, resultlist);
+        compareNodeRight(list1, list2, resultlist);
+        resultlist.sort(Comparator.comparing(x -> x.getKey() + x.getFilenumber()));
+        return Formatter.chooseStyle(resultlist, formatstyle);
     }
 
-    public static void resultmap(Map<String, Object> map1, Map<String, Object> map2,
-                                 Map<String, Object> result, String type) {
-        if (type.equals("right")) {
-            for (Map.Entry element : map1.entrySet()) {
-                if (!map2.containsKey(element.getKey())) {
-                    result.put("remove$" + element.getKey() + "#first", element.getValue());
-                } else if (map2.containsKey(element.getKey())
-                        && !String.valueOf(map2.get(element.getKey())).equals(String.valueOf(element.getValue()))) {
-                    result.put("changedfrom$" + element.getKey() + "#first", element.getValue());
-                    result.put("changedto$" + element.getKey() + "#second", map2.get(element.getKey()));
-                } else if (map2.containsKey(element.getKey())) {
-                    result.put("same$" + element.getKey() + "#first", element.getValue());
-                }
+    public static void addMapToList(List<Node> list, Map<String, Object> map, int number) {
+        for (Map.Entry element: map.entrySet()) {
+            list.add(new Node(element.getKey().toString(), element.getValue(), number, "", ""));
+        }
+    }
+    public static void compareNodeLeft(List<Node> list1, List<Node> list2, List<Node> result) {
+        for (Node element: list1) {
+            if (list2.contains(element)
+                        && !String.valueOf(list2.get(list2.indexOf(element)).getDefaultvalue())
+                    .equals(String.valueOf(element.getDefaultvalue()))) {
+                result.add(new Node(element.getKey(), element.getDefaultvalue(),
+                            element.getFilenumber(), "changed", list2.get(list2.indexOf(element)).getDefaultvalue()));
+            } else if (!list2.contains(element)) {
+                result.add(new Node(element.getKey(), element.getDefaultvalue(),
+                            element.getFilenumber(), "removed", ""));
+            } else {
+                result.add(new Node(element.getKey(), element.getDefaultvalue(),
+                            element.getFilenumber(), "unchanged", ""));
             }
         }
-        if (type.equals("left")) {
-            for (Map.Entry element : map2.entrySet()) {
-                if (!map1.containsKey(element.getKey())) {
-                    result.put("add$" + element.getKey() + "#second", element.getValue());
-                }
+    }
+
+    public static void compareNodeRight(List<Node> list1, List<Node> list2, List<Node> result) {
+        for (Node element : list2) {
+            if (!list1.contains(element)) {
+                result.add(new Node(element.getKey(), element.getDefaultvalue(),
+                        element.getFilenumber(), "added", ""));
             }
         }
     }

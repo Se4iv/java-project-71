@@ -5,19 +5,19 @@ import formatters.Plain;
 import formatters.Stylish;
 
 import java.io.IOException;
-import java.util.Map;
+import java.util.List;
 
 public class Formatter {
 
-    public static String chooseStyle(Map<String, Object> map, String style) throws IOException {
+    public static String chooseStyle(List<Node> list, String style) throws IOException {
 
         switch (style) {
             case "plain":
-                return Plain.formOutput(map);
+                return Plain.formOutput(list);
             case "json":
-                return Json.formOutput(map);
+                return Json.formOutput(list);
             default:
-                return Stylish.formOutput(map);
+                return Stylish.formOutput(list);
         }
 
     }

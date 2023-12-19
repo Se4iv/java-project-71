@@ -1,33 +1,30 @@
 package formatters;
 
-import java.util.Map;
+import hexlet.code.Node;
 
+import java.util.List;
 public class Plain {
 
-    public static String formOutput(Map<String, Object> map) {
+    public static String formOutput(List<Node> list) {
         StringBuilder result = new StringBuilder();
-        for (Map.Entry element: map.entrySet()) {
-            if (element.getKey().toString().contains("same$") || element.getKey().toString().contains("changedto$")) {
+        for (Node element : list) {
+            if (element.getType().equals("unchanged")) {
                 continue;
+            } else if (element.getType().equals("removed")) {
+                result.append(concatenateOutput(element, "' was removed", false, true));
+            } else if (element.getType().equals("added")) {
+                result.append(concatenateOutput(element, "' was added with value: ", false, false));
             } else {
-                result.append("Property '").append(element.getKey().toString()
-                        .replace("changedfrom$", "").replace("remove$", "")
-                        .replace("add$", "").replace("#first", "")
-                        .replace("#second", "")).append("'");
+                result.append(concatenateOutput(element, "' was updated.", true, false));
             }
-            if (element.getKey().toString().contains("changedfrom$")) {
-                result.append(" was updated. From ").append(formatValue(element.getValue())).append(" to ")
-                        .append(formatValue(map.get(element.getKey().toString()
-                                .replace("changedfrom$", "changedto$")
-                                .replace("#first", "#second"))));
-            } else if (element.getKey().toString().contains("add$")) {
-                result.append(" was added with value: ").append(formatValue(element.getValue()));
-            } else {
-                result.append(" was removed");
-            }
-            result.append("\n");
         }
         return result.deleteCharAt(result.length() - 1).toString();
+    }
+
+    public static String concatenateOutput(Node node, String str, boolean isnew, boolean removed) {
+        return "Property '" + node.getKey() + str
+                + (isnew ? " From " + formatValue(node.getDefaultvalue()) + " to " + formatValue(node.getNewvalue())
+                : (removed ? "" : formatValue(node.getDefaultvalue()))) + "\n";
     }
 
     public static boolean isComplex(String str) {
