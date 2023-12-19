@@ -19,7 +19,7 @@ public class Differ {
         compareNodeLeft(list1, list2, resultlist);
         compareNodeRight(list1, list2, resultlist);
         resultlist.sort(Comparator.comparing(x -> x.getKey() + x.getFilenumber()));
-        return Formatter.chooseStyle(resultlist, params[2]);
+        return Formatter.chooseStyle(resultlist, params[2] == null ? "stylish" : params[2]);
     }
 
     public static void addMapToList(List<Node> list, Map<String, Object> map, int number) {
