@@ -4,9 +4,10 @@ plugins {
     id ("application")
     id("jacoco")
     id("checkstyle")
+    id ("maven-publish")
     id("io.freefair.lombok") version "8.2.2"
     id("com.github.ben-manes.versions") version "0.47.0"
-    id("com.github.johnrengelman.shadow") version "8.1.1"
+    //id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
 group = "hexlet.code"
@@ -39,7 +40,7 @@ tasks.test {
     // https://technology.lastminute.com/junit5-kotlin-and-gradle-dsl/
     testLogging {
         exceptionFormat = TestExceptionFormat.FULL
-       // events = mutableSetOf(TestLogEvent.FAILED, TestLogEvent.PASSED, TestLogEvent.SKIPPED)
+        // events = mutableSetOf(TestLogEvent.FAILED, TestLogEvent.PASSED, TestLogEvent.SKIPPED)
         // showStackTraces = true
         // showCauses = true
         showStandardStreams = true
@@ -62,6 +63,6 @@ jacocoTestReport {
 }
 
 tasks.register('applicationCodeCoverageReport', JacocoReport) {
-        executionData run
-        sourceSets sourceSets.main
-    }
+    executionData run
+    sourceSets sourceSets.main
+}
