@@ -2,7 +2,7 @@ package hexlet.code;
 
 import java.util.Objects;
 
-public class Node {
+public final class Node {
     private String key;
     private Object defaultvalue;
     private int filenumber;

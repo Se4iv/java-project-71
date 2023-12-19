@@ -14,8 +14,8 @@ public class ApplicationTest {
         String path1 = USERDIR + "/src/test/resources/testDiff_file1.json";
         String path2 = USERDIR + "/src/test/resources/testDiff_file2.json";
         String expected = "{\n"
-                + "  host: hexlet.io\n"
-                + "  ip: [192.1.1.1, 192.0.0.1, 168.168.1.1]\n"
+                + "    host: hexlet.io\n"
+                + "    ip: [192.1.1.1, 192.0.0.1, 168.168.1.1]\n"
                 + "}";
         assertThat(Differ.generate(path1, path2, STYLE_1)).isEqualTo(expected);
     }
@@ -25,8 +25,8 @@ public class ApplicationTest {
         String path1 = USERDIR + "/src/test/resources/testNull_file1.json";
         String path2 = USERDIR + "/src/test/resources/testNull_file2.json";
         String expected = "{\n"
-                + "+ host: hexlet.io\n"
-                + "+ ip: [192.1.1.1, 192.0.0.1, 168.168.1.1]\n"
+                + "  + host: hexlet.io\n"
+                + "  + ip: [192.1.1.1, 192.0.0.1, 168.168.1.1]\n"
                 + "}";
         assertThat(Differ.generate(path1, path2, STYLE_1)).isEqualTo(expected);
     }
@@ -35,15 +35,15 @@ public class ApplicationTest {
         String path1 = USERDIR + "/src/test/resources/testDiff2_file1.json";
         String path2 = USERDIR + "/src/test/resources/testDiff2_file2.json";
         String expected = "{\n"
-                + "+ config: latest\n"
-                + "- enable: true\n"
-                + "+ enable: false\n"
-                + "  host: hexlet.io\n"
-                + "- ip: [192.1.1.1, 192.0.0.1, 168.168.1.1]\n"
-                + "+ ip: [192.1.1.3, 192.0.0.1, 168.168.1.1]\n"
-                + "- port: 1\n"
-                + "+ port: 10\n"
-                + "- wait: 4\n"
+                + "  + config: latest\n"
+                + "  - enable: true\n"
+                + "  + enable: false\n"
+                + "    host: hexlet.io\n"
+                + "  - ip: [192.1.1.1, 192.0.0.1, 168.168.1.1]\n"
+                + "  + ip: [192.1.1.3, 192.0.0.1, 168.168.1.1]\n"
+                + "  - port: 1\n"
+                + "  + port: 10\n"
+                + "  - wait: 4\n"
                 + "}";
         assertThat(Differ.generate(path1, path2, STYLE_1)).isEqualTo(expected);
     }
@@ -88,8 +88,8 @@ public class ApplicationTest {
         String path1 = USERDIR + "/src/test/resources/testDiff_file1.yml";
         String path2 = USERDIR + "/src/test/resources/testDiff_file2.yml";
         String expected = "{\n"
-                + "  host: hexlet.io\n"
-                + "  ip: [192.1.1.1, 192.0.0.1, 168.168.1.1]\n"
+                + "    host: hexlet.io\n"
+                + "    ip: [192.1.1.1, 192.0.0.1, 168.168.1.1]\n"
                 + "}";
         assertThat(Differ.generate(path1, path2, STYLE_1)).isEqualTo(expected);
     }
@@ -99,8 +99,8 @@ public class ApplicationTest {
         String path1 = USERDIR + "/src/test/resources/testNull_file1.yml";
         String path2 = USERDIR + "/src/test/resources/testNull_file2.yml";
         String expected = "{\n"
-                + "+ host: hexlet.io\n"
-                + "+ ip: [192.1.1.1, 192.0.0.1, 168.168.1.1]\n"
+                + "  + host: hexlet.io\n"
+                + "  + ip: [192.1.1.1, 192.0.0.1, 168.168.1.1]\n"
                 + "}";
         assertThat(Differ.generate(path1, path2, STYLE_1)).isEqualTo(expected);
     }
@@ -109,15 +109,15 @@ public class ApplicationTest {
         String path1 = USERDIR + "/src/test/resources/testDiff2_file1.yml";
         String path2 = USERDIR + "/src/test/resources/testDiff2_file2.yml";
         String expected = "{\n"
-                + "+ config: latest\n"
-                + "- enable: true\n"
-                + "+ enable: false\n"
-                + "  host: hexlet.io\n"
-                + "- ip: [192.1.1.1, 192.0.0.1, 168.168.1.1]\n"
-                + "+ ip: [192.1.1.3, 192.0.0.1, 168.168.1.1]\n"
-                + "- port: 1\n"
-                + "+ port: 10\n"
-                + "- wait: 4\n"
+                + "  + config: latest\n"
+                + "  - enable: true\n"
+                + "  + enable: false\n"
+                + "    host: hexlet.io\n"
+                + "  - ip: [192.1.1.1, 192.0.0.1, 168.168.1.1]\n"
+                + "  + ip: [192.1.1.3, 192.0.0.1, 168.168.1.1]\n"
+                + "  - port: 1\n"
+                + "  + port: 10\n"
+                + "  - wait: 4\n"
                 + "}";
         assertThat(Differ.generate(path1, path2, STYLE_1)).isEqualTo(expected);
     }
