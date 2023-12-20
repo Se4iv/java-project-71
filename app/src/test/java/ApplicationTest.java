@@ -71,7 +71,7 @@ public class ApplicationTest {
     public void testYamlDiff2() throws IOException {
         String path1 = USERDIR + "testDiff2_file1.yml";
         String path2 = USERDIR + "testDiff2_file2.yml";
-        String expected = getTestFile(USERDIR + "testDiff2_result.txt");;
+        String expected = getTestFile(USERDIR + "testDiff2_result.txt");
         assertThat(Differ.generate(path1, path2, STYLE_1)).isEqualTo(expected);
     }
 
@@ -92,6 +92,6 @@ public class ApplicationTest {
     }
 
     public static String getTestFile(String path) throws IOException {
-       return Files.readString(Path.of(path).toAbsolutePath().normalize());
+        return Files.readString(Path.of(path).toAbsolutePath().normalize());
     }
 }
