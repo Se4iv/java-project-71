@@ -1,0 +1,6 @@
+Property 'config' was added with value: 'latest'
+Property 'enable' was updated. From true to false
+Property 'good' was updated. From null to 13
+Property 'ip' was updated. From [complex value] to [complex value]
+Property 'port' was updated. From 1 to 10
+Property 'wait' was removed

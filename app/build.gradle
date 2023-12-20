@@ -7,7 +7,6 @@ plugins {
     id ("maven-publish")
     id("io.freefair.lombok") version "8.2.2"
     id("com.github.ben-manes.versions") version "0.47.0"
-    //id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
 group = "hexlet.code"
@@ -27,22 +26,15 @@ dependencies {
     implementation 'info.picocli:picocli:4.7.5'
     annotationProcessor 'info.picocli:picocli-codegen:4.7.5'
     implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.15.3'
-// https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-yaml
     implementation group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-yaml', version: '2.16.0'
-// https://mvnrepository.com/artifact/org.jacoco/org.jacoco.core
     implementation group: 'org.jacoco', name: 'org.jacoco.core', version: '0.8.11'
-// https://mvnrepository.com/artifact/org.assertj/assertj-core
     testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.24.2'
 }
 
 tasks.test {
     useJUnitPlatform()
-    // https://technology.lastminute.com/junit5-kotlin-and-gradle-dsl/
     testLogging {
         exceptionFormat = TestExceptionFormat.FULL
-        // events = mutableSetOf(TestLogEvent.FAILED, TestLogEvent.PASSED, TestLogEvent.SKIPPED)
-        // showStackTraces = true
-        // showCauses = true
         showStandardStreams = true
     }
 }
