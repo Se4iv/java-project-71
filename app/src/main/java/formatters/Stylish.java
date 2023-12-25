@@ -1,21 +1,18 @@
 package formatters;
 
-import hexlet.code.Node;
-
 import java.util.List;
+import java.util.Map;
 
 public class Stylish {
 
-    public static String formOutput(List<Node> list) {
+    public static String formOutput(List<Map<Object, Object>> list) {
         StringBuilder result = new StringBuilder("{\n");
-        for (Node element : list) {
-            if (element.getFilenumber() == 2 && element.getType().equals("unchanged")) {
-                continue;
-            } else if (element.getType().equals("removed")) {
+        for (Map<Object, Object> element : list) {
+            if (element.get("type").equals("removed")) {
                 result.append(concatenateOutput(element, "  - ", false));
-            } else if (element.getType().equals("added")) {
-                result.append(concatenateOutput(element, "  + ", false));
-            } else if (element.getType().equals("unchanged")) {
+            } else if (element.get("type").equals("added")) {
+                result.append(concatenateOutput(element, "  + ", true));
+            } else if (element.get("type").equals("unchanged")) {
                 result.append(concatenateOutput(element, "    ", false));
             } else {
                 result.append(concatenateOutput(element, "  - ", false))
@@ -25,7 +22,7 @@ public class Stylish {
         return result.append("}").toString();
     }
 
-    public static String concatenateOutput(Node node, String str, boolean isnew) {
-        return str + node.getKey() + ": " + (isnew ? node.getNewvalue() : node.getDefaultvalue()) + "\n";
+    public static String concatenateOutput(Map<Object, Object> map, String str, boolean isnew) {
+        return str + map.get("key") + ": " + (isnew ? map.get("value2") : map.get("value1")) + "\n";
     }
 }

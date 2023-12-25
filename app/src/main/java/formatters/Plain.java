@@ -1,30 +1,28 @@
 package formatters;
 
-import hexlet.code.Node;
-
 import java.util.List;
+import java.util.Map;
+
 public class Plain {
 
-    public static String formOutput(List<Node> list) {
+    public static String formOutput(List<Map<Object, Object>> list) {
         StringBuilder result = new StringBuilder();
-        for (Node element : list) {
-            if (element.getType().equals("unchanged")) {
-                continue;
-            } else if (element.getType().equals("removed")) {
+        for (Map<Object, Object> element : list) {
+            if (element.get("type").equals("removed")) {
                 result.append(concatenateOutput(element, "' was removed", false, true));
-            } else if (element.getType().equals("added")) {
+            } else if (element.get("type").equals("added")) {
                 result.append(concatenateOutput(element, "' was added with value: ", false, false));
-            } else {
+            } else if (!element.get("type").equals("unchanged")) {
                 result.append(concatenateOutput(element, "' was updated.", true, false));
             }
         }
         return result.deleteCharAt(result.length() - 1).toString();
     }
 
-    public static String concatenateOutput(Node node, String str, boolean isnew, boolean removed) {
-        return "Property '" + node.getKey() + str
-                + (isnew ? " From " + formatValue(node.getDefaultvalue()) + " to " + formatValue(node.getNewvalue())
-                : (removed ? "" : formatValue(node.getDefaultvalue()))) + "\n";
+    public static String concatenateOutput(Map<Object, Object> map, String str, boolean isnew, boolean removed) {
+        return "Property '" + map.get("key") + str
+                + (isnew ? " From " + formatValue(map.get("value1")) + " to " + formatValue(map.get("value2"))
+                : (removed ? "" : formatValue(map.get("value2")))) + "\n";
     }
 
     public static boolean isComplex(String str) {

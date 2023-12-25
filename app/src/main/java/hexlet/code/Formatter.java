@@ -6,11 +6,11 @@ import formatters.Stylish;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 public class Formatter {
 
-    public static String chooseStyle(List<Node> list, String style) throws IOException {
-
+    public static String chooseStyle(List<Map<Object, Object>> list, String style) throws IOException {
         switch (style) {
             case "plain":
                 return Plain.formOutput(list);
@@ -19,6 +19,5 @@ public class Formatter {
             default:
                 return Stylish.formOutput(list);
         }
-
     }
 }
