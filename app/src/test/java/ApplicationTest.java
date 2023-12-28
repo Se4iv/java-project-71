@@ -1,6 +1,6 @@
 import hexlet.code.Differ;
+import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
@@ -13,7 +13,7 @@ public class ApplicationTest {
     private static final String JSON = "json";
 
     @Test
-    public void testJsonDiff() throws IOException {
+    public void testJsonDiff()  {
         String path1 = getPathToFile("testDiff_file1.json");
         String path2 = getPathToFile("testDiff_file2.json");
         String expected = getTestFile("testDiff_result.txt");
@@ -21,14 +21,14 @@ public class ApplicationTest {
     }
 
     @Test
-    public void testJsonNull() throws IOException {
+    public void testJsonNull() {
         String path1 = getPathToFile("testNull_file1.json");
         String path2 = getPathToFile("testNull_file2.json");
         String expected = getTestFile("testNull_result.txt");
         assertThat(Differ.generate(path1, path2, STYLISH)).isEqualTo(expected);
     }
     @Test
-    public void testJsonDiff2() throws IOException {
+    public void testJsonDiff2() {
         String path1 = getPathToFile("testDiff2_file1.json");
         String path2 = getPathToFile("testDiff2_file2.json");
         String expected = getTestFile("testDiff2_result.txt");
@@ -36,7 +36,7 @@ public class ApplicationTest {
     }
 
     @Test
-    public void testJsonDiff3() throws IOException {
+    public void testJsonDiff3() {
         String path1 = getPathToFile("testDiff3_file1.json");
         String path2 = getPathToFile("testDiff3_file2.json");
         String expected = getTestFile("testDiff3_result.txt");
@@ -44,7 +44,7 @@ public class ApplicationTest {
     }
 
     @Test
-    public void testJsonDiff4() throws IOException {
+    public void testJsonDiff4() {
         String path1 = getPathToFile("testDiff4_file1.json");
         String path2 = getPathToFile("testDiff4_file2.json");
         String expected = getTestFile("testDiff4_result_json.txt");
@@ -52,7 +52,7 @@ public class ApplicationTest {
     }
 
     @Test
-    public void testJsonDiffDefaultStyle() throws IOException {
+    public void testJsonDiffDefaultStyle() {
         String path1 = getPathToFile("testDiff2_file1.json");
         String path2 = getPathToFile("testDiff2_file2.json");
         String expected = getTestFile("testDiff2_result.txt");
@@ -61,7 +61,7 @@ public class ApplicationTest {
 
 
     @Test
-    public void testYamlDiff() throws IOException {
+    public void testYamlDiff() {
         String path1 = getPathToFile("testDiff_file1.yml");
         String path2 = getPathToFile("testDiff_file2.yml");
         String expected = getTestFile("testDiff_result.txt");
@@ -69,14 +69,14 @@ public class ApplicationTest {
     }
 
     @Test
-    public void testYamlNull() throws IOException {
+    public void testYamlNull() {
         String path1 = getPathToFile("testNull_file1.yml");
         String path2 = getPathToFile("testNull_file2.yml");
         String expected = getTestFile("testNull_result.txt");
         assertThat(Differ.generate(path1, path2, STYLISH)).isEqualTo(expected);
     }
     @Test
-    public void testYamlDiff2() throws IOException {
+    public void testYamlDiff2() {
         String path1 = getPathToFile("testDiff2_file1.yml");
         String path2 = getPathToFile("testDiff2_file2.yml");
         String expected = getTestFile("testDiff2_result.txt");
@@ -84,7 +84,7 @@ public class ApplicationTest {
     }
 
     @Test
-    public void testYamlDiff3() throws IOException {
+    public void testYamlDiff3() {
         String path1 = getPathToFile("testDiff3_file1.yml");
         String path2 = getPathToFile("testDiff3_file2.yml");
         String expected = getTestFile("testDiff3_result.txt");
@@ -92,7 +92,7 @@ public class ApplicationTest {
     }
 
     @Test
-    public void testYamlDiff4() throws IOException {
+    public void testYamlDiff4() {
         String path1 = getPathToFile("testDiff4_file1.yml");
         String path2 = getPathToFile("testDiff4_file2.yml");
         String expected = getTestFile("testDiff4_result_yml.txt");
@@ -100,14 +100,15 @@ public class ApplicationTest {
     }
 
     @Test
-    public void testYamlDefaultStyle() throws IOException {
+    public void testYamlDefaultStyle()  {
         String path1 = getPathToFile("testDiff2_file1.yml");
         String path2 = getPathToFile("testDiff2_file2.yml");
         String expected = getTestFile("testDiff2_result.txt");
         assertThat(Differ.generate(path1, path2)).isEqualTo(expected);
     }
 
-    public static String getTestFile(String filename) throws IOException {
+    @SneakyThrows
+    public static String getTestFile(String filename) {
         return Files.readString(Path.of(USERDIR + filename).toAbsolutePath().normalize());
     }
 

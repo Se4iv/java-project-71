@@ -16,12 +16,12 @@ public final class App implements Callable<Integer> {
     private String filepath2;
     @Option(names = {"-f", "--format"}, defaultValue = "stylish", description = "output format [default: stylish]")
     private String format;
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         int exitcode = new CommandLine(new App()).execute(args);
         System.exit(exitcode);
     }
     @Override
-    public Integer call() throws Exception {
+    public Integer call() {
         System.out.println(Differ.generate(filepath1, filepath2, format));
         return 0;
     }

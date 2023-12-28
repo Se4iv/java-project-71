@@ -1,4 +1,4 @@
-package formatters;
+package hexlet.code.formatters;
 
 import java.util.List;
 import java.util.Map;
@@ -22,7 +22,7 @@ public class Stylish {
         return result.append("}").toString();
     }
 
-    public static String concatenateOutput(Map<Object, Object> map, String str, boolean isnew) {
-        return str + map.get("key") + ": " + (isnew ? map.get("value2") : map.get("value1")) + "\n";
+    public static String concatenateOutput(Map<Object, Object> map, String str, boolean isNew) {
+        return str + map.get("key") + ": " + (isNew ? map.get("value2") : map.get("value1")) + "\n";
     }
 }
