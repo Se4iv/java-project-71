@@ -34,11 +34,11 @@ public class ApplicationTest {
     }
 
     @SneakyThrows
-    String getTestFile(String filename) {
+    private String getTestFile(String filename) {
         return Files.readString(Path.of(userDir + filename).toAbsolutePath().normalize());
     }
 
-    String getPathToFile(String filename) {
+    private String getPathToFile(String filename) {
         return userDir + filename;
     }
 }
