@@ -2,6 +2,7 @@ package hexlet.code.formatters;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class Plain {
 
@@ -25,12 +26,12 @@ public class Plain {
                 : (removed ? "" : formatValue(map.get("value2")))) + "\n";
     }
 
-    public static boolean isComplex(String str) {
-        return str.charAt(0) == '[' || str.charAt(0) == '{';
+    public static boolean isComplex(Object o) {
+        return Objects.nonNull(o) && (o instanceof List<?> || o instanceof Map<?, ?>);
     }
 
     public static String formatValue(Object object) {
-        return isComplex(String.valueOf(object)) ? "[complex value]"
+        return isComplex(object) ? "[complex value]"
                 : (object instanceof String ? "'" + object + "'" : String.valueOf(object));
     }
 }

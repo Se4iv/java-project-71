@@ -12,10 +12,12 @@ run-yml-plain:
 run-json-json:
 	@./build/install/app/bin/app -f json file1.json file2.json
 build:
-	@gradle clean build installDist
+	@./gradlew clean installDist
 test:
-	@gradle test
+	@./gradlew test
 lint:
-	@gradle checkstyleMain
+	@./gradlew checkstyleMain checkstyleTest
+report:
+	@./gradlew jacocoTestReport
 
 .PHONY: build

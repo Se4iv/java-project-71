@@ -1,59 +1,39 @@
 package hexlet.code;
 
 import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.TreeSet;
+
 
 public class DifferBuild {
-    //Make merged map of two incoming maps
-    public static Map<Object, List<Object>> mergeMaps(Map<Object, Object> map1, Map<Object, Object> map2) {
-        Map<Object, List<Object>> mergedMap = new HashMap<>();
-        map1.forEach((key, value) -> mergedMap.put(key, makeList(value, "")));
-        map2.forEach((key, value) -> mergedMap.merge(key, makeList("", value),
-                (prev, next) -> makeList(prev.get(0), next.get(1))));
-        return mergedMap;
-    }
 
-    //Make list to avoid problems with null values
-    public static ArrayList<Object> makeList(Object value1, Object value2) {
-        return Stream.of(value1, value2).collect(Collectors.toCollection(ArrayList::new));
+    public static List<Map<Object, Object>> findDifference(Map<Object, Object> map1, Map<Object, Object> map2) {
+        Set<Object> keys = new TreeSet<>();
+        keys.addAll(map1.keySet());
+        keys.addAll(map2.keySet());
+        List<Map<Object, Object>> result = new ArrayList<>();
+        keys.forEach(key -> {
+            if (!map2.containsKey(key)) {
+                result.add(makeNewMap(key, "removed", map1.get(key), ""));
+            } else if (!map1.containsKey(key)) {
+                result.add(makeNewMap(key, "added", "", map2.get(key)));
+            } else if (String.valueOf(map1.get(key)).equals(String.valueOf(map2.get(key)))) {
+                result.add(makeNewMap(key, "unchanged", map1.get(key), map2.get(key)));
+            } else {
+                result.add(makeNewMap(key, "changed", map1.get(key), map2.get(key)));
+            }
+        });
+        return result;
     }
-    //Forming list of maps with all keys and values from first and second files
-    public static List<Map<Object, Object>> addMergedMapToList(Map<Object, List<Object>> mergedMap) {
-        List<Map<Object, Object>> differList = new ArrayList<>();
-        mergedMap.forEach((key, value) -> differList.add(makeNewMap(key, value.get(0), value.get(1))));
-        return differList;
-    }
-    //to avoid problems with null values
-    public static Map<Object, Object> makeNewMap(Object key, Object value1, Object value2) {
+    public static Map<Object, Object> makeNewMap(Object key, String type, Object value1, Object value2) {
         Map<Object, Object> newmap = new TreeMap<>();
         newmap.put("key", key);
-        newmap.put("type", "default");
+        newmap.put("type", type);
         newmap.put("value1", value1);
         newmap.put("value2", value2);
         return newmap;
-    }
-
-    public static void sortList(List<Map<Object, Object>> differList) {
-        differList.sort(Comparator.comparing(x -> x.get("key").toString()));
-    }
-
-    public static void updateTypeOfDiff(List<Map<Object, Object>> differList) {
-        differList.forEach(element -> {
-            if (String.valueOf(element.get("value1")).isEmpty()) {
-                element.put("type", "added");
-            } else if (String.valueOf(element.get("value2")).isEmpty()) {
-                element.put("type", "removed");
-            } else if (String.valueOf(element.get("value1")).equals(String.valueOf(element.get("value2")))) {
-                element.put("type", "unchanged");
-            } else {
-                element.put("type", "changed");
-            }
-        });
     }
 }

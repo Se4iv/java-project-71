@@ -12,12 +12,13 @@ import java.util.Map;
 public class Parser {
     @SneakyThrows
     public static Map<Object, Object> parseFile(String file, String fileFormat) {
-        if (fileFormat.endsWith(".json")) {
-            return new ObjectMapper(new JsonFactory()).readValue(file, new TypeReference<>() { });
-        } else if (fileFormat.endsWith(".yml")) {
-            return new ObjectMapper(new YAMLFactory()).readValue(file, new TypeReference<>() { });
-        } else {
-            throw new WrongFormatFile("Wrong format of file! Need to be .json or .yml");
+        switch (fileFormat) {
+            case "json":
+                return new ObjectMapper(new JsonFactory()).readValue(file, new TypeReference<>() { });
+            case "yml":
+                return new ObjectMapper(new YAMLFactory()).readValue(file, new TypeReference<>() { });
+            default:
+                throw new WrongFormatFile("Wrong format of file! Need to be *.json or *.yml");
         }
     }
 }

@@ -1,16 +1,15 @@
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 
 plugins {
-    id ("application")
+    id("java")
+    id("application")
     id("jacoco")
     id("checkstyle")
-    id ("maven-publish")
     id("io.freefair.lombok") version "8.2.2"
-    id("com.github.ben-manes.versions") version "0.47.0"
 }
 
 group = "hexlet.code"
-version = "1.0-SNAPSHOT"
+version = "2.0"
 
 application { mainClass.set("hexlet.code.App") }
 
@@ -19,10 +18,8 @@ repositories {
 }
 
 dependencies {
-    implementation("com.h2database:h2:2.2.220")
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
-    implementation("org.apache.commons:commons-lang3:3.13.0")
     implementation 'info.picocli:picocli:4.7.5'
     annotationProcessor 'info.picocli:picocli-codegen:4.7.5'
     implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.15.3'
@@ -40,21 +37,11 @@ tasks.test {
 }
 compileJava {
     options.release = 20
-    options.compilerArgs += ["-Aproject=${project.group}/${project.name}"]
 }
 
-jacoco {
-    applyTo run
-}
 jacocoTestReport {
+    dependsOn test
     reports {
-        xml.required = false
-        csv.required = false
-        html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
+        xml.required = true
     }
-}
-
-tasks.register('applicationCodeCoverageReport', JacocoReport) {
-    executionData run
-    sourceSets sourceSets.main
 }

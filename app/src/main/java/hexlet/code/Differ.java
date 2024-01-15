@@ -9,12 +9,9 @@ import java.util.Map;
 
 public class Differ {
     public static String generate(String path1, String path2, String style)  {
-        Map<Object, Object> map1 = Parser.parseFile(readFile(path1), path1);
-        Map<Object, Object> map2 = Parser.parseFile(readFile(path2), path2);
-        Map<Object, List<Object>> mergedMap = DifferBuild.mergeMaps(map1, map2);
-        List<Map<Object, Object>> differList = DifferBuild.addMergedMapToList(mergedMap);
-        DifferBuild.sortList(differList);
-        DifferBuild.updateTypeOfDiff(differList);
+        Map<Object, Object> map1 = Parser.parseFile(readFile(path1), getFormat(path1));
+        Map<Object, Object> map2 = Parser.parseFile(readFile(path2), getFormat(path2));
+        List<Map<Object, Object>> differList = DifferBuild.findDifference(map1, map2);
         return Formatter.chooseStyle(differList, style);
     }
     public static String generate(String path1, String path2) {
@@ -23,5 +20,9 @@ public class Differ {
     @SneakyThrows
     public static String readFile(String path) {
         return Files.readString(Path.of(path).toAbsolutePath().normalize());
+    }
+
+    public static String getFormat(String path) {
+        return path.substring(path.lastIndexOf(".") + 1);
     }
 }

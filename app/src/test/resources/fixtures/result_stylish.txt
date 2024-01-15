@@ -2,9 +2,13 @@
   + config: latest
   - enable: true
   + enable: false
+  - good: null
+  + good: 13
     host: hexlet.io
   - ip: [192.1.1.1, 192.0.0.1, 168.168.1.1]
   + ip: [192.1.1.3, 192.0.0.1, 168.168.1.1]
+  - object: {key1=one, key2=two}
+  + object: {key1=two, key2=one}
   - port: 1
   + port: 10
   - wait: 4
